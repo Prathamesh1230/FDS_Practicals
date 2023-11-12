@@ -1,0 +1,25 @@
+# Create a list of books (as tuples)
+books = [
+    ("Book1", "Author1", 300),("Book2", "Author2", 600),("Book3", "Author3", 200),("Book1", "Author1", 300),("Book4", "Author4", 700)]
+# Taken Duplicate entry of Author1 in above
+
+unique_books = list(set(books))
+
+# Sort books by cost in ascending order
+def sort_by_cost(book):
+    return book[2]
+
+sorted_books = sorted(unique_books, key=sort_by_cost)
+
+# Display sorted books
+print("Books in ascending order based on cost:")
+for book in sorted_books:
+    print(f"{book[0]} by {book[1]} - {book[2]}")
+
+# Books Costing More and less than 500
+count_expensive_books = len([book for book in sorted_books if book[2] > 500])
+count_affordable_books = len([book for book in sorted_books if book[2] <= 500])
+
+# Output for more and less than 500
+print(f"\nBooks with cost more than 500: {count_expensive_books}")
+print(f"Books with cost less than or equal to 500: {count_affordable_books}")
