@@ -1,0 +1,34 @@
+# Example marks data (use -1 for absent students)
+marks = [85, 92, 78, 95, 0, 92, 88, 78, 95, 85]
+
+def compute_statistics(marks):
+    total_score = 0
+    total_students = 0
+    absent_count = 0
+    frequency = {}
+
+    highest = lowest = marks[0]
+
+    for mark in marks:
+        if mark != -1:
+            total_score += mark
+            total_students += 1
+            highest = mark if mark > highest else highest
+            lowest = mark if mark < lowest else lowest
+            frequency[mark] = frequency.get(mark, 0) + 1
+        else:
+            absent_count += 1
+
+    average = total_score / total_students if total_students != 0 else 0
+    most_frequent_mark = max(frequency, key=frequency.get)
+
+    return average, highest, lowest, absent_count, most_frequent_mark
+
+# Compute the statistics
+average, highest, lowest, absent_count, most_frequent_mark = compute_statistics(marks)
+
+print("Average score of the class:", average)
+print("Highest score in the class:", highest)
+print("Lowest score in the class:", lowest)
+print("Number of students absent for the test:", absent_count)
+print("Mark with the highest frequency:", most_frequent_mark)
