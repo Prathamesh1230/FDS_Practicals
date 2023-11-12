@@ -1,0 +1,32 @@
+marks = [] # empty list
+n = int(input("Enter the number of students: "))
+
+for i in range(n):
+    mark = float(input(f"Enter the marks for student {i + 1}: "))
+    marks.append(mark)
+
+print("Original marks:", marks)
+
+# Select Insertion or Shell
+choice = int(input("Choose a sorting method (1 for Insertion Sort, 2 for Shell Sort): "))
+
+if choice == 1:
+    for i in range(1, n):
+        key, j = marks[i], i - 1
+        while j >= 0 and key < marks[j]:
+            marks[j + 1] = marks[j]
+            j -= 1
+        marks[j + 1] = key
+elif choice == 2:
+    interval = n // 2
+    while interval > 0:
+        for i in range(interval, n):
+            temp, j = marks[i], i
+            while j >= interval and marks[j - interval] > temp:
+                marks[j] = marks[j - interval]
+                j -= interval
+            marks[j] = temp
+        interval //= 2
+
+# Output
+print("Sorted marks:", marks)
