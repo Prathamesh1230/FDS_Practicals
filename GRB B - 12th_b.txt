@@ -1,1 +1,51 @@
+def fibonacci_search(arr, x):
+    n = len(arr)
+    fib_m_minus_2 = 0
+    fib_m_minus_1 = 1
+    fib = fib_m_minus_1 + fib_m_minus_2
+
+    while fib < n:
+        fib_m_minus_2 = fib_m_minus_1
+        fib_m_minus_1 = fib
+        fib = fib_m_minus_1 + fib_m_minus_2
+
+    offset = -1
+    while fib > 1:
+        i = min(offset + fib_m_minus_2, n - 1)
+        if arr[i][0] < x:
+            fib = fib_m_minus_1
+            fib_m_minus_1 = fib_m_minus_2
+            fib_m_minus_2 = fib - fib_m_minus_1
+            offset = i
+        elif arr[i][0] > x:
+            fib = fib_m_minus_2
+            fib_m_minus_1 = fib_m_minus_1 - fib_m_minus_2
+            fib_m_minus_2 = fib - fib_m_minus_1
+        else:
+            return i
+    if fib_m_minus_1 and arr[offset+1][0] == x:
+        return offset + 1
+    return -1
+
+# phonebook as a list of tuples
+phonebook = [("Pratham", "9090909090"), ("Person1", "9876543210"), ("Person2", "9897969594")]
+
+# Sorting the phonebook
+def sort_by_name(entry):
+    return entry[0]
+
+phonebook.sort(key=sort_by_name)
+
+# Search
+search_name = input("Enter the name to search: ")
+index = fibonacci_search(phonebook, search_name)
+
+if index == -1:
+    new_mobile = input("Enter mobile number for " + search_name + ": ")
+    new_entry = (search_name, new_mobile)
+    phonebook.append(new_entry)
+    phonebook.sort(key=sort_by_name)
+    print(search_name + " added to the phonebook.")
+else:
+    print(search_name + " found with mobile number: " + phonebook[index][1])
 
