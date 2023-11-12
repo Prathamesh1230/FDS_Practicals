@@ -1,0 +1,24 @@
+def sentinel_search(roll_numbers, target_roll):
+    index = 0
+    
+    while roll_numbers[index] != target_roll:
+        index += 1
+
+    if roll_numbers[index] == target_roll:
+        return True
+    return False
+
+# Input: store roll numbers of students in an array
+roll_numbers = [101, 102, 105, 110, 115, 120, 125, 130]
+
+# Input: roll number to search
+target_roll = int(input("Enter roll number to search: "))
+
+# Perform sentinel search
+found = sentinel_search(roll_numbers, target_roll)
+
+# Output: display whether the student attended the training program or not
+if found:
+    print(f"Student with roll number {target_roll} attended the training program.")
+else:
+    print(f"Student with roll number {target_roll} did not attend the training program.")
