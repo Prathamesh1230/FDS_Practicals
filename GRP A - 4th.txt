@@ -1,0 +1,36 @@
+def deposit(amount, balance):
+    return balance + amount
+
+def withdraw(amount, balance):
+    if amount <= balance:
+        return balance - amount, True
+    else:
+        print("Withdrawal not allowed. Insufficient funds.")
+        return balance, False
+
+def process_transactions():
+    balance = 0
+    
+    while True:
+        transaction = input("Enter transaction (D for deposit, W for withdrawal,and 'done' to finish): ").split()
+        
+        if transaction[0] == 'done':
+            break
+        
+        try:
+            amount = int(transaction[1])
+            if transaction[0] == 'D':
+                balance = deposit(amount, balance)
+            elif transaction[0] == 'W':
+                balance, success = withdraw(amount, balance)
+                if not success:
+                    continue
+            else:
+                print("Invalid transaction type. Please use D for deposit and W for withdrawal.")
+        except (IndexError, ValueError):
+            print("Invalid input format. Please enter valid transaction.")
+
+    return balance
+
+net_amount = process_transactions()
+print("Net amount in the bank account:", net_amount)
