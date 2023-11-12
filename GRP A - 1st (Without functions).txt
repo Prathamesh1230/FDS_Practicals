@@ -1,0 +1,21 @@
+cricket_players = {"Pratham", "Anirudh", "Luffy", "Chetan", "Pratham", "Brook"}
+badminton_players = {"Anirudh", "Ace", "Chetan", "Gopal",}
+football_players = {"Pratham", "Luffy", "Ace", "Brook", "Gopal", "David"}
+
+# a) List of students who play both cricket and badminton
+common_players = cricket_players.intersection(badminton_players)
+
+# b) List of students who play either cricket or badminton but not both
+either_or_players = cricket_players.symmetric_difference(badminton_players)
+
+# c) Number of students who play neither cricket nor badminton
+neither_players = total_students = cricket_players.union(badminton_players, football_players)
+neither_players = total_students - (cricket_players | badminton_players)
+
+# d) Number of students who play cricket and football but not badminton
+specific_players = cricket_players.intersection(football_players) - badminton_players
+
+print("Students who play both cricket and badminton:", common_players)
+print("Students who play either cricket or badminton but not both:", either_or_players)
+print("Number of students who play neither cricket nor badminton:", len(neither_players))
+print("Number of students who play cricket and football but not badminton:", len(specific_players))
