@@ -1,0 +1,20 @@
+def linear_search(roll_numbers, target_roll):
+    for roll_number in roll_numbers:
+        if roll_number == target_roll:
+            return True
+    return False
+
+# Input: store roll numbers of students in an array
+roll_numbers = [4, 11, 12, 13, 16, 24 , 25,]
+
+# Input: roll number to search
+target_roll = int(input("Enter roll number to search: "))
+
+# Perform linear search
+found = linear_search(roll_numbers, target_roll)
+
+# Output: display whether the student attended the training program or not
+if found:
+    print(f"Student with roll number {target_roll} attended the training program.")
+else:
+    print(f"Student with roll number {target_roll} did not attend the training program.")
