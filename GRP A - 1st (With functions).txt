@@ -1,0 +1,27 @@
+def find_common_players(cricket, badminton):
+    return list(set(cricket) & set(badminton))
+
+def find_either_cricket_or_badminton(cricket, badminton):
+    return list(set(cricket) ^ set(badminton))
+
+def find_neither_cricket_nor_badminton(total_students, cricket, badminton):
+    return list(total_students - set(cricket) - set(badminton))
+
+def find_cricket_and_football_but_not_badminton(cricket, football, badminton):
+    return list(set(cricket) & set(football) - set(badminton))
+
+cricket_players = ["Prathamesh", "Anirudh", "Rohit", "Chetan", "Brook"]
+badminton_players = ["Anirudh", "Luffy", "Chetan", "Harshal", "David"]
+football_players = ["Prathamesh", "Rohit", "Luffy", "Brook", "Grace"]
+
+total_students = set(cricket_players + badminton_players + football_players)
+
+common_players = find_common_players(cricket_players, badminton_players)
+either_or_players = find_either_cricket_or_badminton(cricket_players, badminton_players)
+neither_players = find_neither_cricket_nor_badminton(total_students, cricket_players, badminton_players)
+specific_players = find_cricket_and_football_but_not_badminton(cricket_players, football_players, badminton_players)
+
+print("Students who play both cricket and badminton:", common_players)
+print("Students who play either cricket or badminton but not both:", either_or_players)
+print("Number of students who play neither cricket nor badminton:", len(neither_players))
+print("Number of students who play cricket and football but not badminton:", len(specific_players))
