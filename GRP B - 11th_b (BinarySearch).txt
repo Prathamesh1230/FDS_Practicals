@@ -1,0 +1,29 @@
+def binary_search(roll_numbers, target_roll):
+    left, right = 0, len(roll_numbers) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if roll_numbers[mid] == target_roll:
+            return True
+        elif roll_numbers[mid] < target_roll:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return False
+
+# store roll numbers of students who attended training program in sorted order
+roll_numbers = [10, 20, 30, 40, 50, 60, 70, 80]
+
+# Input: roll number to search
+target_roll = int(input("Enter roll number to search: "))
+
+# Perform binary search
+found = binary_search(roll_numbers, target_roll)
+
+# Output: display whether the student attended the training program or not
+if found:
+    print("Student with roll number attended the training program.")
+else:
+    print("Student with roll number did not attend the training program.")
