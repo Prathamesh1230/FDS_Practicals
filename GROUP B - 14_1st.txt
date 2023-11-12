@@ -1,0 +1,44 @@
+
+def selection_sort(marks):
+    n = len(marks)
+    for i in range(n):
+        min_index = i
+        for j in range(i+1, n):
+            if marks[j] < marks[min_index]:
+                min_index = j
+        marks[i], marks[min_index] = marks[min_index], marks[i]
+
+def bubble_sort(marks):
+    n = len(marks)
+    for i in range(n-1):
+        for j in range(0, n-i-1):
+            if marks[j] > marks[j+1]:
+                marks[j], marks[j+1] = marks[j+1], marks[j]
+
+while True:
+    print("Press 1: Selection Sort\nPress 2: Bubble Sort\nPress 0: Exit")
+    choice = int(input("Enter your choice: "))
+
+    if choice == 0:
+        break
+
+    n = int(input("Enter the number of students to be sorted: "))
+    marks = []
+
+    for i in range(n):
+        mark = float(input(f"Enter the marks for student {i+1}: "))
+        marks.append(mark)
+
+    print("Original marks:", marks)
+
+    if choice == 1:
+        selection_sort(marks)
+    elif choice == 2:
+        bubble_sort(marks)
+
+    print("Sorted marks:", marks)
+
+    if n >= 5:
+        # Display the "Top five members" (highest to lowest)
+        top_five = marks[-5:][::-1]
+        print("Top five members:", top_five)
