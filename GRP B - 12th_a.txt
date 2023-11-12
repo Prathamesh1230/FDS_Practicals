@@ -1,0 +1,44 @@
+def insert_contact(contacts, name, mobile_number):
+    contact = (name, mobile_number)
+    if not contacts:
+        contacts.append(contact)
+    else:
+        index = 0
+        while index < len(contacts) and contacts[index][0] < name:
+            index += 1
+        if index < len(contacts) and contacts[index][0] == name:
+            print(f"{name} already exists in the phonebook.")
+        else:
+            contacts.insert(index, contact)
+            print(f"{name} has been added to the phonebook.")
+
+def binary_search(contacts, name):
+    left, right = 0, len(contacts) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+        if contacts[mid][0] == name:
+            return mid
+        elif contacts[mid][0] < name:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+# 
+contacts = []
+
+# Inserting contacts
+insert_contact(contacts, "Prathamesh", "1234567890")
+insert_contact(contacts, "Anirudh", "9876543210")
+insert_contact(contacts, "Chetan", "5555555555")
+
+# Searching for contacts
+search_name = input("Enter the name to search: ")
+
+
+index = binary_search(contacts, search_name)
+if index != -1:
+    print(f"{search_name} found at index {index} (using binary search).")
+else:
+    print(f"{search_name} not found (using binary search).")
